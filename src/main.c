@@ -5,6 +5,7 @@
 int main(int argc, char **argv){
 
     struct chip8 chip8;
+    //chip8.registers.V[0x0f] = 50; // Example of setting something in one of the registers
     chip8_memory_set(&chip8.memory, 0x400, 'z');
     printf("%c\n", chip8_memory_get(&chip8.memory, 50));
 
