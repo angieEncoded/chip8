@@ -1,31 +1,20 @@
 #include <stdio.h>
 #include "SDL2/SDL.h"
 #include "chip8.h" // include this one, the config will cascade from it
+#include "chip8keyboard.h"
+#include <stdbool.h>
+
+const char keyboard_map[CHIP8_TOTAL_KEYS] = {
+    SDLK_0, SDLK_1, SDLK_2, SDLK_3, 
+    SDLK_4, SDLK_5, SDLK_6, SDLK_7,
+    SDLK_8, SDLK_9, SDLK_a, SDLK_b, 
+    SDLK_c, SDLK_d, SDLK_e, SDLK_f
+};
 
 int main(int argc, char **argv){
 
     struct chip8 chip8;
     
-    // Testing the chip8 stack is functional
-    // chip8.registers.stack_pointer = 0; 
-    // chip8_stack_push(&chip8, 0xff);
-    // chip8_stack_push(&chip8, 0xaa);
-    // printf("%x\n", chip8_stack_pop(&chip8));
-    // printf("%x\n", chip8_stack_pop(&chip8));
-    /*
-        Chip 8 test responses
-        josie@legion2025 MINGW64 ~/Desktop/Chip8 (main)
-        $ ./bin/main.exe 
-        aa
-        ff
-    */
-
-
-
-    //chip8.registers.V[0x0f] = 50; // Example of setting something in one of the registers
-    // chip8_memory_set(&chip8.memory, 0x400, 'z');
-    // printf("%c\n", chip8_memory_get(&chip8.memory, 50));
-
     // Invoke the entirety of the SDL library
     SDL_Init(SDL_INIT_EVERYTHING);
 
@@ -50,9 +39,40 @@ int main(int argc, char **argv){
         SDL_Event event;
 
         while(SDL_PollEvent(&event)){
-            if(event.type == SDL_QUIT){
-                goto out;
+            
+            switch(event.type){
+
+                case SDL_QUIT:
+                    goto out;
+                break;
+
+                case SDL_KEYDOWN:
+                {
+                    char key = event.key.keysym.sym;
+                    int vkey = chip8_keyboard_map(keyboard_map, key);
+                    // printf("Key is down %x\n", vkey);
+                    if(vkey != -1){
+                        chip8_keyboard_down(&chip8.keyboard, vkey);
+                    }
+
+                }
+                break;
+                    
+                case SDL_KEYUP:  
+                {
+                    char key = event.key.keysym.sym;
+                    int vkey = chip8_keyboard_map(keyboard_map, key);
+                    // printf("Key is down %x\n", vkey);
+                    if(vkey != -1){
+                        chip8_keyboard_up(&chip8.keyboard, vkey);
+                    }
+
+                }
+                break;
             }
+            
+
+            
         }
 
         // 0 0 0 is black
