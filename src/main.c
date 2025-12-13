@@ -5,9 +5,26 @@
 int main(int argc, char **argv){
 
     struct chip8 chip8;
+    
+    // Testing the chip8 stack is functional
+    // chip8.registers.stack_pointer = 0; 
+    // chip8_stack_push(&chip8, 0xff);
+    // chip8_stack_push(&chip8, 0xaa);
+    // printf("%x\n", chip8_stack_pop(&chip8));
+    // printf("%x\n", chip8_stack_pop(&chip8));
+    /*
+        Chip 8 test responses
+        josie@legion2025 MINGW64 ~/Desktop/Chip8 (main)
+        $ ./bin/main.exe 
+        aa
+        ff
+    */
+
+
+
     //chip8.registers.V[0x0f] = 50; // Example of setting something in one of the registers
-    chip8_memory_set(&chip8.memory, 0x400, 'z');
-    printf("%c\n", chip8_memory_get(&chip8.memory, 50));
+    // chip8_memory_set(&chip8.memory, 0x400, 'z');
+    // printf("%c\n", chip8_memory_get(&chip8.memory, 50));
 
     // Invoke the entirety of the SDL library
     SDL_Init(SDL_INIT_EVERYTHING);
