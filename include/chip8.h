@@ -15,6 +15,10 @@ struct chip8{
 
 };
 
+// chip8 initialization 
+void chip8_init(struct chip8* chip8);
+
+
 
 
 
