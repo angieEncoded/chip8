@@ -39,3 +39,33 @@
     //chip8.registers.V[0x0f] = 50; // Example of setting something in one of the registers
     // chip8_memory_set(&chip8.memory, 0x400, 'z');
     // printf("%c\n", chip8_memory_get(&chip8.memory, 50));
+
+
+     // 0 0 0 is black
+        // SDL_SetRenderDrawColor(
+        //     renderer, // renderer
+        //     0,  // red color
+        //     0,  // green color
+        //     0,  // blue color
+        //     0   // Alpha channel
+        // );
+
+        // // paint over the entire screen with the color black
+        // SDL_RenderClear(renderer);
+
+        // // change the draw color
+        // SDL_SetRenderDrawColor(
+        //     renderer, // renderer
+        //     255,  // red color
+        //     255,  // green color
+        //     255,  // blue color
+        //     0   // Alpha channel
+        // );
+
+
+        
+                // this will draw a simple box on the screen
+                // SDL_RenderDrawRect(renderer, &r); //draw the rectangle, give it the address of the rectangle
+                
+                // This will fill the rectangle
+               // SDL_RenderFillRect(renderer, &r); //draw the rectangle, give it the address of the rectangle

@@ -15,6 +15,7 @@ int main(int argc, char **argv){
 
     struct chip8 chip8;
     chip8_init(&chip8); // initialize
+    chip8_screen_set(&chip8.screen, 10, 1);
 
 
     // Invoke the entirety of the SDL library
@@ -72,44 +73,31 @@ int main(int argc, char **argv){
                 }
                 break;
             }
-            
-
-            
         }
 
-        // 0 0 0 is black
-        SDL_SetRenderDrawColor(
-            renderer, // renderer
-            0,  // red color
-            0,  // green color
-            0,  // blue color
-            0   // Alpha channel
-        );
-
-        // paint over the entire screen with the color black
+       
+        SDL_SetRenderDrawColor(renderer, 0, 0, 0, 0 );
         SDL_RenderClear(renderer);
+        SDL_SetRenderDrawColor(renderer, 255, 255, 255, 0);
 
-        // change the draw color
-        SDL_SetRenderDrawColor(
-            renderer, // renderer
-            255,  // red color
-            255,  // green color
-            255,  // blue color
-            0   // Alpha channel
-        );
+        for(int x = 0; x < CHIP8_WIDTH; x++){
+            for (int y = 0; y < CHIP8_HEIGHT; y++){
 
-        // Now we want a white rectangle
-        SDL_Rect r;
-        r.x = 0;
-        r.y = 0;
-        r.w = 40;
-        r.h = 40;
+                if(chip8_screen_is_set(&chip8.screen, x, y)){
+                    SDL_Rect r;
+                    r.x = x * CHIP8_WINDOW_MULTIPLIER;
+                    r.y = y * CHIP8_WINDOW_MULTIPLIER;
+                    r.w = CHIP8_WINDOW_MULTIPLIER;
+                    r.h = CHIP8_WINDOW_MULTIPLIER;
+                    SDL_RenderFillRect(renderer, &r);
+                }
 
-        // this will draw a simple box on the screen
-        // SDL_RenderDrawRect(renderer, &r); //draw the rectangle, give it the address of the rectangle
-        
-        // This will fill the rectangle
-        SDL_RenderFillRect(renderer, &r); //draw the rectangle, give it the address of the rectangle
+            }
+        }
+
+
+
+
         SDL_RenderPresent(renderer);
 
     }

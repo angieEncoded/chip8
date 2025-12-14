@@ -1,0 +1,1 @@
+# Chip8 emulator project from Daniel McCarthy's Udemy course

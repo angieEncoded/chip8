@@ -1,6 +1,5 @@
-#ifndef CONFIG_H
-#define CONFIG_H
-
+#ifndef __CONFIG__H__
+#define __CONFIG__H__
 
 #define EMULATOR_WINDOW_TITLE "Chip 8 Emulator"
 #define CHIP8_MEMORY_SIZE 4096
@@ -16,4 +15,7 @@
 #define CHIP8_CHARACTER_SET_LOAD_ADDRESS 0x00
 
 
-#endif
+
+#endif  //!__CONFIG__H__
+
+
