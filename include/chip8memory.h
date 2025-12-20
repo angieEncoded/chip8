@@ -1,5 +1,6 @@
-#ifndef CHIP8MEMORY_H
-#define CHIP8MEMORY_H
+#ifndef __CHIP8MEMORY__H__
+#define __CHIP8MEMORY__H__
+
 #include "config.h"
 
 struct chip8_memory{
@@ -11,6 +12,4 @@ struct chip8_memory{
 void chip8_memory_set(struct chip8_memory* memory, int index, unsigned char value);
 unsigned char chip8_memory_get(struct chip8_memory* memory, int index);
 
-
-
-#endif
+#endif  //!__CHIP8MEMORY__H__
